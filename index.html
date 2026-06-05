@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Why Delphi Uses DPM</title>
-    <meta name="description" content="A simple article explaining why Delphi uses Dynamic Parimutuel Markets for prediction markets.">
+    <title>How DPM Works</title>
+    <meta name="description" content="A plain English guide to how Dynamic Parimutuel Markets work — with real examples.">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
 
-    <!-- DARK/LIGHT TOGGLE -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <div class="toggle-track">
         <div class="toggle-knob"></div>
@@ -21,10 +20,10 @@
       <article class="article">
 
         <header class="hero">
-          <p class="kicker">Prediction Markets</p>
-          <h1>Why Delphi Uses DPM</h1>
+          <p class="kicker">Prediction Markets · Plain English</p>
+          <h1>How DPM Works</h1>
           <p class="dek">
-            No jargon. No fluff. Just a straight explanation of how Delphi actually works — and why your payout looks the way it does.
+            No fixed odds. No bookmaker. Just a shared pool, automatic pricing, and winners splitting the pot. Here is exactly how it works.
           </p>
         </header>
 
@@ -38,113 +37,423 @@
 
         <section>
           <p>
-            If you have ever looked at your potential payout on Delphi and thought "wait, why did this number change?" — this article is for you.
+            If you have ever placed a position on Delphi and thought "wait, why did my payout number change?" — this is the article for you.
           </p>
           <p>
-            Delphi is not like a normal betting site. There are no fixed odds. No bookmaker setting a price. Instead, Delphi runs on something called <strong>DPM — Dynamic Parimutuel Market</strong>. Once you understand how it works, a lot of things start making sense.
+            Delphi runs on <strong>DPM — Dynamic Parimutuel Market</strong>. It is not like a traditional betting platform. There are no fixed odds, no bookmaker on the other side. The market prices itself based on what people do. Once you understand the core idea, everything else falls into place.
           </p>
         </section>
 
         <section>
-          <h2>The Basic Idea: A Shared Pool</h2>
+          <h2>The Core Idea: One Shared Pool</h2>
           <p>
-            Think of every market on Delphi as a shared prize pool. When people put money in, that money goes into the pool. When the market settles, the entire pool gets split among the winners — based on how many shares they hold.
+            Every market on Delphi is a shared prize pool. People put money in by buying shares on an outcome. When the market settles, the entire pool gets distributed among the winners — based on how many shares each person holds.
           </p>
-          <p>The key formula is simple:</p>
+          <p>The key formula is straightforward:</p>
           <p><strong>Payout = Your Shares × Settlement Price</strong></p>
           <p>
-            That is it. Not your investment multiplied by some percentage. Your shares multiplied by what each share is worth at settlement.
+            Your shares are determined by when you entered and at what price. The settlement price is determined by how the pool resolves. These two numbers multiplied together give you your final payout.
+          </p>
+
+          <!-- INFOGRAPHIC 1: How pool splits among winners -->
+          <div class="infographic" id="infographic-pool">
+            <div class="infographic-title">How the Pool Splits at Settlement</div>
+            <div class="pool-split-wrap">
+              <div class="pool-circle-wrap">
+                <div class="pool-circle">
+                  <span class="pool-label">Total Pool<br><strong>$100</strong></span>
+                </div>
+              </div>
+              <div class="pool-arrow-down">▼</div>
+              <div class="pool-winners">
+                <div class="pool-winner winner-a">
+                  <div class="winner-bar" style="height:80px">
+                    <span class="winner-shares">40 shares</span>
+                  </div>
+                  <div class="winner-name">Early Buyer</div>
+                  <div class="winner-payout">Gets <strong>$57</strong></div>
+                </div>
+                <div class="pool-winner winner-b">
+                  <div class="winner-bar" style="height:42px">
+                    <span class="winner-shares">21 shares</span>
+                  </div>
+                  <div class="winner-name">Mid Buyer</div>
+                  <div class="winner-payout">Gets <strong>$30</strong></div>
+                </div>
+                <div class="pool-winner winner-c">
+                  <div class="winner-bar" style="height:18px">
+                    <span class="winner-shares">9 shares</span>
+                  </div>
+                  <div class="winner-name">Late Buyer</div>
+                  <div class="winner-payout">Gets <strong>$13</strong></div>
+                </div>
+              </div>
+              <div class="pool-note">All three invested ~$10 each. Early buyer got 40 shares at 25¢. Late buyer got 9 shares at $1.10.</div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>How the Price Moves</h2>
+          <p>
+            In DPM, the price is not set by anyone. It moves automatically based on demand. Every time someone buys shares on an outcome, the price for that outcome goes up. The more people pile in, the more expensive it gets for the next buyer.
+          </p>
+          <p>
+            This is by design. Early buyers get rewarded with cheaper prices — and therefore more shares — for committing to an outcome before the crowd catches on.
+          </p>
+
+          <!-- INFOGRAPHIC 2: DPM Price Movement Flow -->
+          <div class="infographic" id="infographic-price">
+            <div class="infographic-title">DPM Price Movement Flow</div>
+            <div class="price-flow">
+              <div class="price-step">
+                <div class="price-badge price-low">20¢</div>
+                <div class="price-step-label">Market opens<br>Few buyers</div>
+                <div class="price-shares">You get <strong>50 shares</strong> for $10</div>
+              </div>
+              <div class="price-connector">
+                <div class="price-connector-line"></div>
+                <div class="price-connector-text">More people buy YES →<br>price climbs</div>
+              </div>
+              <div class="price-step">
+                <div class="price-badge price-mid">55¢</div>
+                <div class="price-step-label">Mid market<br>Crowd building</div>
+                <div class="price-shares">Next buyer gets <strong>18 shares</strong> for $10</div>
+              </div>
+              <div class="price-connector">
+                <div class="price-connector-line"></div>
+                <div class="price-connector-text">Consensus forms →<br>price peaks</div>
+              </div>
+              <div class="price-step">
+                <div class="price-badge price-high">90¢</div>
+                <div class="price-step-label">Late market<br>Everyone agrees</div>
+                <div class="price-shares">Late buyer gets <strong>11 shares</strong> for $10</div>
+              </div>
+            </div>
+            <div class="price-note">Same $10 invested. Early buyer ends up with 4.5× more shares than the late buyer.</div>
+          </div>
+
+          <p>
+            Early buyer → lower price → more shares → bigger slice of the final pool<br>
+            Late buyer → higher price → fewer shares → smaller slice of the final pool
+          </p>
+        </section>
+
+        <!-- INFOGRAPHIC 3: Early vs Late Entry -->
+        <section>
+          <h2>Early vs Late Entry: The Share Difference</h2>
+          <p>
+            The single biggest factor in your DPM payout is not how much you invested — it is when you invested and how many shares you received at that price.
+          </p>
+
+          <div class="infographic" id="infographic-entry">
+            <div class="infographic-title">Early vs Late Entry — Same $10, Very Different Outcome</div>
+            <div class="entry-comparison">
+              <div class="entry-card entry-early">
+                <div class="entry-tag">Early Entry</div>
+                <div class="entry-price">Entry price: <strong>20¢</strong></div>
+                <div class="entry-invested">Invested: <strong>$10</strong></div>
+                <div class="entry-shares-wrap">
+                  <div class="entry-shares-label">Shares received</div>
+                  <div class="entry-bars">
+                    <div class="entry-bar-row" id="early-bars"></div>
+                  </div>
+                  <div class="entry-share-count"><span class="count-num" data-target="50" data-decimals="0">50</span> shares</div>
+                </div>
+                <div class="entry-payout">Final payout from $100 pool<br><strong class="entry-win">$71.40</strong></div>
+              </div>
+              <div class="entry-vs">VS</div>
+              <div class="entry-card entry-late">
+                <div class="entry-tag">Late Entry</div>
+                <div class="entry-price">Entry price: <strong>90¢</strong></div>
+                <div class="entry-invested">Invested: <strong>$10</strong></div>
+                <div class="entry-shares-wrap">
+                  <div class="entry-shares-label">Shares received</div>
+                  <div class="entry-bars">
+                    <div class="entry-bar-row" id="late-bars"></div>
+                  </div>
+                  <div class="entry-share-count"><span class="count-num" data-target="11" data-decimals="0">11</span> shares</div>
+                </div>
+                <div class="entry-payout">Final payout from $100 pool<br><strong class="entry-lose">$15.71</strong></div>
+              </div>
+            </div>
+            <div class="pool-note">Both pick the correct outcome. Early buyer walks away with 4.5× more despite same investment.</div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Example 1: IPL Final</h2>
+          <p>
+            A market opens: <em>"Who will win IPL 2025 — MI or CSK?"</em>
+          </p>
+          <p>
+            At the start, both sides are quiet. You believe MI will win and put in <strong>$10 early</strong> when the price is low — say 30 cents per share. You receive roughly <strong><span class="count-num" data-target="33" data-decimals="0">33</span> shares</strong>.
+          </p>
+          <p>
+            As the tournament progresses, more people start backing MI. The price climbs to 60 cents, then 80 cents. A late buyer puts in the same $10 but only gets <strong><span class="count-num" data-target="12" data-decimals="0">12</span> shares</strong>.
+          </p>
+          <p>
+            MI wins. You hold 33 shares, the late buyer holds 12. You take a much bigger cut of the same pool — simply because you committed earlier when the price was cheap.
           </p>
         </section>
 
         <section>
-          <h2>Why Early Entry Matters</h2>
+          <h2>Example 2: Bitcoin Above $100k</h2>
           <p>
-            Here is where DPM gets interesting. Every time someone buys shares on an outcome, the price goes up automatically. The more people pile in, the more expensive it gets.
+            A market asks: <em>"Will BTC hit $100k before end of 2025?"</em>
           </p>
           <p>
-            So if you enter early, you get more shares for the same amount of money. If you enter late, you get fewer shares because the price has already moved up.
+            Early on, very few people believe it. YES shares are cheap at 20 cents. You buy <strong>$20 worth</strong> and receive <strong><span class="count-num" data-target="100" data-decimals="0">100</span> shares</strong>.
           </p>
           <p>
-            Early buyer → cheaper price → more shares → bigger slice of the pool<br>
-            Late buyer → expensive price → fewer shares → smaller slice of the pool
-          </p>
-        </section>
-
-        <section>
-          <h2>Real Example: The GTA Trailer Market</h2>
-          <p>
-            A user entered the "Will GTA Trailer 3 come out before or after May 27th?" market early. At that point, the potential payout was showing around <strong><span class="count-num" data-target="8" data-prefix="$" data-decimals="2">$8.00</span></strong>.
+            Three months later, BTC pumps hard. Everyone starts buying YES. Price jumps to 75 cents. A new buyer puts in $20 and gets only <strong><span class="count-num" data-target="26" data-decimals="0">26</span> shares</strong>.
           </p>
           <p>
-            Over time, more people joined and bet on the same side. The pool grew — but so did the number of winners sharing it. By the time the market settled, the claimable amount had dropped to <strong><span class="count-num" data-target="3.75" data-prefix="$" data-decimals="2">$3.75</span></strong>.
-          </p>
-          <p>
-            This is not a bug. This is DPM doing exactly what it is designed to do. More winners = smaller individual cut, even if you entered early.
-          </p>
-          <p>
-            The lesson? If everyone agrees with you, your payout will be lower. The biggest payouts go to people who were right when most others were wrong.
+            BTC hits $100k. Market resolves YES. Your 100 shares versus their 26 — you walk away with nearly <strong>4× their payout</strong> despite investing the same $20.
           </p>
         </section>
 
         <section>
-          <h2>Another Real Example: The Payout Math</h2>
+          <h2>Example 3: Esports Tournament</h2>
           <p>
-            Here is an actual calculation from a Delphi market to show how the formula works in practice.
+            Market: <em>"Will Team Liquid win the next major CS2 tournament?"</em>
           </p>
           <p>
-            A user invested <strong><span class="count-num" data-target="20.79" data-prefix="$" data-decimals="2">$20.79</span></strong> and ended up with <strong><span class="count-num" data-target="41.87" data-suffix=" shares" data-decimals="2">41.87 shares</span></strong>. The settlement price came in at <strong><span class="count-num" data-target="0.89" data-prefix="$" data-decimals="2">$0.89</span></strong> (meaning the winning outcome resolved at 88.9%).
+            Most people bet YES early because of hype. YES price shoots to 70 cents. You think NO is underpriced and buy NO shares at 25 cents — getting <strong><span class="count-num" data-target="40" data-decimals="0">40</span> shares</strong> for $10.
           </p>
           <p>
-            Payout = 41.87 shares × $0.89 = <strong><span class="count-num" data-target="37.27" data-prefix="$" data-decimals="2">$37.27</span></strong>
+            Team Liquid loses in the semis. Market resolves NO. Almost nobody was on your side — so the pool is large and spread among very few winners. Your 40 NO shares claim a massive fraction of the total pool.
           </p>
           <p>
-            Some people thought the payout should be much higher — like 200% returns. But that was based on a misunderstanding. The 88.9% settlement price and the investment amount are not directly related. You cannot just multiply them together.
-          </p>
-          <p>
-            The actual return ratio here was about <strong>1.79x</strong> — because the average entry price was around 49.7 cents, very close to 50/50. That is why the return was close to 1.8x and not 2x or more.
+            This is the contrarian advantage in DPM. Being right when everyone else was wrong pays the most.
           </p>
         </section>
 
         <section>
-          <h2>What About Low Liquidity Markets?</h2>
+          <h2>Example 4: GTA VI Trailer</h2>
           <p>
-            A common concern on Delphi is seeing a market with low activity and thinking "this market is dead, I will not get my money back."
+            A real one. Market: <em>"Will GTA Trailer 3 release before or after May 27th?"</em>
           </p>
           <p>
-            That is the wrong way to think about it here. Delphi is not an order book like Polymarket where low liquidity means you cannot find a buyer. DPM does not work like that.
+            A user entered early when the potential payout showed around <strong><span class="count-num" data-target="8" data-prefix="$" data-decimals="2">$8.00</span></strong>. But over time, more and more people joined the same side.
           </p>
           <p>
-            In DPM, the cost function handles every trade automatically. You do not need someone on the other side to match your bet. The market will always take your trade. Your position size and payout percentage are determined by your entry price and shares — not by how many other people showed up.
+            The pool grew. But so did the number of people splitting it. By settlement, the claimable amount dropped to <strong><span class="count-num" data-target="3.75" data-prefix="$" data-decimals="2">$3.75</span></strong>.
           </p>
           <p>
-            A quiet market on Delphi is not a broken market. It is just a market with fewer participants. Your position is still valid.
+            Not a bug. Not an error. When everyone agrees with you, you still win — but you share the pot with a lot more people.
           </p>
         </section>
 
         <section>
-          <h2>The One Real Tradeoff</h2>
+          <h2>How Liquidity Works in DPM</h2>
           <p>
-            DPM is not perfect. The main thing to know is that the price in a DPM market is not the same as the probability of an outcome.
+            This is the part most people get wrong — especially those coming from platforms like Polymarket.
           </p>
           <p>
-            On some platforms, if something is priced at 70 cents, that means the crowd thinks there is a 70% chance it happens. On Delphi, it is slightly more complex than that. The implied probability needs a bit of extra calculation under the hood.
+            On an order book platform, low liquidity means you might not find a buyer or seller on the other side. That is a real concern there. <strong>DPM does not work like that.</strong>
           </p>
           <p>
-            For most users this will not matter day to day. But it is worth knowing so you are not surprised.
+            Think of it like a DEX liquidity pool. You do not need a matching buyer — the pool always accepts your trade and the price adjusts automatically. DPM is the same idea applied to prediction markets.
+          </p>
+
+          <!-- INFOGRAPHIC 4: Liquidity small vs big pool -->
+          <div class="infographic" id="infographic-liquidity">
+            <div class="infographic-title">Small Pool vs Big Pool — Your Position Stays Proportional</div>
+            <div class="liquidity-compare">
+              <div class="liq-card">
+                <div class="liq-header">Small Pool</div>
+                <div class="liq-pool-vis small-pool">
+                  <div class="liq-your-slice" style="width:20%">Your 20%</div>
+                </div>
+                <div class="liq-stats">
+                  <div class="liq-stat">Total pool: <strong>$50</strong></div>
+                  <div class="liq-stat">Your bet: <strong>$10</strong></div>
+                  <div class="liq-stat">Your share: <strong>20%</strong></div>
+                  <div class="liq-stat liq-payout">Your payout: <strong>$10</strong> from winning side</div>
+                </div>
+              </div>
+              <div class="liq-vs">≈</div>
+              <div class="liq-card">
+                <div class="liq-header">Big Pool</div>
+                <div class="liq-pool-vis big-pool">
+                  <div class="liq-your-slice" style="width:0.2%"></div>
+                  <div class="liq-your-label">Your 0.2%</div>
+                </div>
+                <div class="liq-stats">
+                  <div class="liq-stat">Total pool: <strong>$5,000</strong></div>
+                  <div class="liq-stat">Your bet: <strong>$10</strong></div>
+                  <div class="liq-stat">Your share: <strong>0.2%</strong></div>
+                  <div class="liq-stat liq-payout">Your payout: <strong>$10</strong> from winning side</div>
+                </div>
+              </div>
+            </div>
+            <div class="pool-note">A quiet market is not a broken market. Your position scales with your share of the pool regardless of total size.</div>
+          </div>
+
+          <p>
+            A quiet market on Delphi is not a broken market. It is just a smaller pool. Your position is still valid and your payout scales with your share of it.
+          </p>
+        </section>
+
+        <!-- STEP BY STEP TIMELINE -->
+        <section>
+          <h2>From Entry to Settlement: Step by Step</h2>
+          <p>
+            Here is exactly what happens from the moment you place a position to the moment you get paid.
+          </p>
+          <div class="infographic" id="infographic-timeline">
+            <div class="infographic-title">Your Journey in a DPM Market</div>
+            <div class="timeline">
+              <div class="tl-step">
+                <div class="tl-num">1</div>
+                <div class="tl-content">
+                  <div class="tl-title">Market Opens</div>
+                  <div class="tl-desc">A question is posted. Starting price is set. Pool is empty. Early buyers get the cheapest shares.</div>
+                </div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-step">
+                <div class="tl-num">2</div>
+                <div class="tl-content">
+                  <div class="tl-title">You Buy Shares</div>
+                  <div class="tl-desc">You pick an outcome and put money in. The cost function calculates your shares based on current price. Price moves up slightly after your trade.</div>
+                </div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-step">
+                <div class="tl-num">3</div>
+                <div class="tl-content">
+                  <div class="tl-title">Market Runs</div>
+                  <div class="tl-desc">More people join. Price keeps adjusting. Your potential payout number changes as the pool evolves — this is normal.</div>
+                </div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-step">
+                <div class="tl-num">4</div>
+                <div class="tl-content">
+                  <div class="tl-title">Market Closes</div>
+                  <div class="tl-desc">No more trades. The event happens in the real world. The outcome is determined.</div>
+                </div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-step">
+                <div class="tl-num">5</div>
+                <div class="tl-content">
+                  <div class="tl-title">Settlement</div>
+                  <div class="tl-desc">Winning outcome is confirmed. The pool is distributed among winners based on shares held. Wrong outcome = $0. Correct outcome = Your Shares × Settlement Price.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- WHAT HAPPENS IF I AM WRONG -->
+        <section>
+          <h2>What Happens if You Pick the Wrong Outcome?</h2>
+          <p>
+            Simple answer — if you hold shares on the losing outcome at settlement, that position is worth <strong>$0</strong>. The entire pool goes to the winners.
+          </p>
+
+          <div class="infographic" id="infographic-wrongright">
+            <div class="infographic-title">Wrong Outcome vs Correct Outcome at Settlement</div>
+            <div class="wr-compare">
+              <div class="wr-card wr-wrong">
+                <div class="wr-icon">✗</div>
+                <div class="wr-label">Wrong Outcome</div>
+                <div class="wr-desc">You held shares on the losing side</div>
+                <div class="wr-result">Payout = <strong>$0</strong></div>
+                <div class="wr-note">Your stake goes into the pool for winners to claim</div>
+              </div>
+              <div class="wr-card wr-right">
+                <div class="wr-icon">✓</div>
+                <div class="wr-label">Correct Outcome</div>
+                <div class="wr-desc">You held shares on the winning side</div>
+                <div class="wr-result">Payout = <strong>Shares × Settlement Price</strong></div>
+                <div class="wr-note">Your share of the total pool based on how many shares you hold</div>
+              </div>
+            </div>
+            <div class="pool-note">This is not unique to DPM — any prediction market works this way. The difference in DPM is how your shares and payout are calculated.</div>
+          </div>
+
+          <p>
+            This is why position sizing matters. Only put in what you are comfortable losing if the outcome goes against you.
+          </p>
+        </section>
+
+        <!-- CONTRARIAN vs CONSENSUS -->
+        <section>
+          <h2>Contrarian vs Consensus: Who Gets Paid More?</h2>
+          <p>
+            In DPM, not all correct predictions pay equally. The fewer people who agree with you, the bigger your cut of the pool when you are right.
+          </p>
+
+          <div class="infographic" id="infographic-contrarian">
+            <div class="infographic-title">Same Correct Prediction — Very Different Payout</div>
+            <div class="con-compare">
+              <div class="con-card con-consensus">
+                <div class="con-header">Consensus Bet</div>
+                <div class="con-bar-wrap">
+                  <div class="con-bar-label">YES side (winning)</div>
+                  <div class="con-bar-track">
+                    <div class="con-bar-fill" style="width:85%">85% of pool</div>
+                  </div>
+                  <div class="con-bar-label">NO side (losing)</div>
+                  <div class="con-bar-track">
+                    <div class="con-bar-fill con-bar-lose" style="width:15%">15%</div>
+                  </div>
+                </div>
+                <div class="con-result">
+                  Everyone agreed → small losing pool → winners split very little extra money
+                  <br><strong>Low payout</strong>
+                </div>
+              </div>
+              <div class="con-card con-contrarian">
+                <div class="con-header">Contrarian Bet</div>
+                <div class="con-bar-wrap">
+                  <div class="con-bar-label">YES side (losing)</div>
+                  <div class="con-bar-track">
+                    <div class="con-bar-fill con-bar-lose" style="width:80%">80% of pool</div>
+                  </div>
+                  <div class="con-bar-label">NO side (winning)</div>
+                  <div class="con-bar-track">
+                    <div class="con-bar-fill" style="width:20%">20%</div>
+                  </div>
+                </div>
+                <div class="con-result">
+                  Few people agreed with you → massive losing pool → you and few winners claim it all
+                  <br><strong>High payout</strong>
+                </div>
+              </div>
+            </div>
+            <div class="pool-note">The GTA Trailer example: everyone bet the same side → low individual payout despite being correct.</div>
+          </div>
+
+          <p>
+            This is why DPM rewards genuine information edge. If you know something others do not — and you are right — the payout reflects that.
+          </p>
+        </section>
+
+        <section>
+          <h2>One Thing to Keep in Mind</h2>
+          <p>
+            DPM prices and probabilities are not the same number. On some platforms, a price of 70 cents directly means a 70% chance. In DPM, the implied probability requires a small extra calculation under the hood.
+          </p>
+          <p>
+            For most day-to-day usage this will not affect you. But it is worth knowing so you are not caught off guard when comparing prices across platforms.
           </p>
         </section>
 
         <section>
           <h2>Quick Summary</h2>
           <p>
-            Delphi uses DPM because it works well for a new platform with thin markets. It lets anyone trade at any time. It keeps risk manageable for market creators. And it is built on solid academic foundations — not hype.
+            DPM is a shared pool system. Prices move automatically based on demand. Early buyers get more shares for less money. Winners split the pool based on shares held — not fixed odds.
           </p>
           <p>
-            The tradeoffs are real and the team is open about them. No mechanism is perfect. But for what Delphi is trying to build, DPM is a thoughtful starting point.
+            Low liquidity does not mean your position is broken — it just means a smaller pool. And the best payouts go to people who were right when most others were wrong.
           </p>
           <p>
-            If you ever have questions about a specific market or payout, feel free to ask in the community. Chances are someone has seen a similar situation before.
+            Any questions about a specific market or payout — drop them in the community. Someone has likely seen it before.
           </p>
         </section>
 
@@ -152,15 +461,13 @@
     </main>
 
     <script>
-      // ── DARK / LIGHT TOGGLE ──
+      // DARK / LIGHT TOGGLE
       const toggle = document.getElementById('themeToggle');
       const label  = document.getElementById('toggleLabel');
       const html   = document.documentElement;
-
-      const saved = localStorage.getItem('theme') || 'light';
+      const saved  = localStorage.getItem('theme') || 'light';
       html.setAttribute('data-theme', saved);
       label.textContent = saved === 'dark' ? 'Dark' : 'Light';
-
       toggle.addEventListener('click', () => {
         const current = html.getAttribute('data-theme');
         const next    = current === 'dark' ? 'light' : 'dark';
@@ -169,52 +476,68 @@
         localStorage.setItem('theme', next);
       });
 
-      // ── SCROLL REVEAL ──
-      const sections = document.querySelectorAll('section');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
+      // SCROLL REVEAL
+      const revealEls = document.querySelectorAll('section, .infographic');
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.style.animationDelay = '0.05s';
             entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+            revealObs.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.08 });
+      revealEls.forEach(el => revealObs.observe(el));
 
-      sections.forEach(sec => observer.observe(sec));
-
-      // ── NUMBER COUNTER ANIMATION ──
+      // NUMBER COUNTER
       function animateCounter(el) {
         const target   = parseFloat(el.dataset.target);
-        const prefix   = el.dataset.prefix   || '';
-        const suffix   = el.dataset.suffix   || '';
+        const prefix   = el.dataset.prefix  || '';
+        const suffix   = el.dataset.suffix  || '';
         const decimals = parseInt(el.dataset.decimals) || 0;
         const duration = 1200;
         const start    = performance.now();
-
         function step(now) {
-          const elapsed  = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          // ease out cubic
+          const progress = Math.min((now - start) / duration, 1);
           const eased    = 1 - Math.pow(1 - progress, 3);
-          const current  = eased * target;
-          el.textContent = prefix + current.toFixed(decimals) + suffix;
+          el.textContent = prefix + (eased * target).toFixed(decimals) + suffix;
           if (progress < 1) requestAnimationFrame(step);
         }
-
         requestAnimationFrame(step);
       }
-
-      const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            counterObserver.unobserve(entry.target);
-          }
+      const cntObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { animateCounter(e.target); cntObs.unobserve(e.target); }
         });
       }, { threshold: 0.5 });
+      document.querySelectorAll('.count-num').forEach(el => cntObs.observe(el));
 
-      document.querySelectorAll('.count-num').forEach(el => counterObserver.observe(el));
+      // SHARE BAR BUILDER for Early vs Late infographic
+      function buildBars(containerId, count, color) {
+        const wrap = document.getElementById(containerId);
+        if (!wrap) return;
+        const max  = 50;
+        const show = Math.min(count, max);
+        for (let i = 0; i < show; i++) {
+          const dot = document.createElement('div');
+          dot.className = 'share-dot';
+          dot.style.background = color;
+          dot.style.animationDelay = (i * 18) + 'ms';
+          wrap.appendChild(dot);
+        }
+      }
+
+      const barObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            buildBars('early-bars', 50, 'var(--accent)');
+            buildBars('late-bars',  11, 'var(--warm)');
+            barObs.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      const entryInfographic = document.getElementById('infographic-entry');
+      if (entryInfographic) barObs.observe(entryInfographic);
     </script>
   </body>
 </html>
