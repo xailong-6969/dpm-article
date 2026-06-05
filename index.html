@@ -1,149 +1,220 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Why Delphi Uses DPM</title>
-    <meta
-      name="description"
-      content="A simple article explaining why Delphi uses Dynamic Parimutuel Markets for prediction markets."
-    >
+    <meta name="description" content="A simple article explaining why Delphi uses Dynamic Parimutuel Markets for prediction markets.">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
+    <!-- DARK/LIGHT TOGGLE -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <div class="toggle-track">
+        <div class="toggle-knob"></div>
+      </div>
+      <span class="toggle-label" id="toggleLabel">Light</span>
+    </button>
+
     <main class="page">
       <article class="article">
+
         <header class="hero">
           <p class="kicker">Prediction Markets</p>
           <h1>Why Delphi Uses DPM</h1>
           <p class="dek">
-            A simple look at Dynamic Parimutuel Markets, why they help small
-            prediction markets, and what tradeoff they bring.
+            No jargon. No fluff. Just a straight explanation of how Delphi actually works — and why your payout looks the way it does.
           </p>
         </header>
 
         <figure class="market-visual" aria-label="DPM market flow">
-          <div class="visual-node">People trade Yes or No</div>
+          <div class="visual-node">You buy shares on an outcome</div>
           <div class="visual-arrow" aria-hidden="true"></div>
-          <div class="visual-node visual-node-strong">DPM formula sets the cost</div>
+          <div class="visual-node visual-node-strong">Price adjusts automatically</div>
           <div class="visual-arrow" aria-hidden="true"></div>
-          <div class="visual-node">Market signal changes over time</div>
+          <div class="visual-node">Winners split the pool at settlement</div>
         </figure>
 
         <section>
           <p>
-            Prediction markets are used to collect people&apos;s views about the
-            future. A market may ask a question like, "Will Bitcoin reach a new
-            high this year?" People can buy shares for <strong>Yes</strong> or
-            <strong>No</strong>. As people trade, the market shows what the crowd
-            believes.
+            If you have ever looked at your potential payout on Delphi and thought "wait, why did this number change?" — this article is for you.
           </p>
-
           <p>
-            But a prediction market needs a good system behind it. If the system
-            is weak, users may not be able to trade easily. Prices may also give
-            poor signals. This is why the market mechanism matters.
+            Delphi is not like a normal betting site. There are no fixed odds. No bookmaker setting a price. Instead, Delphi runs on something called <strong>DPM — Dynamic Parimutuel Market</strong>. Once you understand how it works, a lot of things start making sense.
           </p>
         </section>
 
         <section>
-          <h2>What DPM Means</h2>
+          <h2>The Basic Idea: A Shared Pool</h2>
           <p>
-            DPM means <strong>Dynamic Parimutuel Market</strong>. It is a way to
-            run a prediction market.
+            Think of every market on Delphi as a shared prize pool. When people put money in, that money goes into the pool. When the market settles, the entire pool gets split among the winners — based on how many shares they hold.
           </p>
-
+          <p>The key formula is simple:</p>
+          <p><strong>Payout = Your Shares × Settlement Price</strong></p>
           <p>
-            A normal parimutuel market works like a shared pool. Users put money
-            into the pool. When the event ends, the people who picked the winning
-            side share the pool.
-          </p>
-
-          <p>
-            DPM takes this idea and makes it more useful for modern prediction
-            markets. It lets people trade while the market is still open. The
-            market can react when new information comes in.
+            That is it. Not your investment multiplied by some percentage. Your shares multiplied by what each share is worth at settlement.
           </p>
         </section>
 
         <section>
-          <h2>Why Delphi Chose It</h2>
+          <h2>Why Early Entry Matters</h2>
           <p>
-            Delphi is still a new platform. Many of its markets may start small.
-            Some markets may have only a few traders at first.
+            Here is where DPM gets interesting. Every time someone buys shares on an outcome, the price goes up automatically. The more people pile in, the more expensive it gets.
           </p>
-
           <p>
-            DPM helps in this situation because users can still trade even when a
-            market is thin. They do not always need to wait for another person to
-            take the opposite side.
+            So if you enter early, you get more shares for the same amount of money. If you enter late, you get fewer shares because the price has already moved up.
           </p>
-
           <p>
-            DPM also helps the person who creates the market. The creator does
-            not have to take unlimited risk. Their maximum loss can be limited.
-            This is important because Delphi wants many people to create markets.
+            Early buyer → cheaper price → more shares → bigger slice of the pool<br>
+            Late buyer → expensive price → fewer shares → smaller slice of the pool
           </p>
         </section>
 
         <section>
-          <h2>The Cost Function</h2>
+          <h2>Real Example: The GTA Trailer Market</h2>
           <p>
-            Delphi uses DPM with a cost function. In simple words, the cost
-            function is the formula that controls the market.
+            A user entered the "Will GTA Trailer 3 come out before or after May 27th?" market early. At that point, the potential payout was showing around <strong><span class="count-num" data-target="8" data-prefix="$" data-decimals="2">$8.00</span></strong>.
           </p>
-
           <p>
-            It decides how much a trade costs. It also decides how the market
-            changes after each trade.
+            Over time, more people joined and bet on the same side. The pool grew — but so did the number of winners sharing it. By the time the market settled, the claimable amount had dropped to <strong><span class="count-num" data-target="3.75" data-prefix="$" data-decimals="2">$3.75</span></strong>.
           </p>
-
           <p>
-            This makes the system cleaner. It is easier to build, easier to
-            check, and easier to improve later.
+            This is not a bug. This is DPM doing exactly what it is designed to do. More winners = smaller individual cut, even if you entered early.
+          </p>
+          <p>
+            The lesson? If everyone agrees with you, your payout will be lower. The biggest payouts go to people who were right when most others were wrong.
           </p>
         </section>
 
         <section>
-          <h2>The Main Tradeoff</h2>
+          <h2>Another Real Example: The Payout Math</h2>
           <p>
-            DPM is useful, but it is not perfect. The main downside is that the
-            price is not always the same as probability.
+            Here is an actual calculation from a Delphi market to show how the formula works in practice.
           </p>
-
           <p>
-            In many prediction markets, a price of 70 cents may look like a 70%
-            chance. In DPM, it is not that simple. The real probability needs
-            extra calculation.
+            A user invested <strong><span class="count-num" data-target="20.79" data-prefix="$" data-decimals="2">$20.79</span></strong> and ended up with <strong><span class="count-num" data-target="41.87" data-suffix=" shares" data-decimals="2">41.87 shares</span></strong>. The settlement price came in at <strong><span class="count-num" data-target="0.89" data-prefix="$" data-decimals="2">$0.89</span></strong> (meaning the winning outcome resolved at 88.9%).
           </p>
-
           <p>
-            So Delphi gets strong liquidity and lower risk for market creators.
-            But users must remember that DPM prices are not always direct
-            probabilities.
+            Payout = 41.87 shares × $0.89 = <strong><span class="count-num" data-target="37.27" data-prefix="$" data-decimals="2">$37.27</span></strong>
+          </p>
+          <p>
+            Some people thought the payout should be much higher — like 200% returns. But that was based on a misunderstanding. The 88.9% settlement price and the investment amount are not directly related. You cannot just multiply them together.
+          </p>
+          <p>
+            The actual return ratio here was about <strong>1.79x</strong> — because the average entry price was around 49.7 cents, very close to 50/50. That is why the return was close to 1.8x and not 2x or more.
           </p>
         </section>
 
         <section>
-          <h2>Why This Matters</h2>
+          <h2>What About Low Liquidity Markets?</h2>
           <p>
-            Prediction markets should be honest about their limits. No mechanism
-            is perfect. Every design has a tradeoff.
+            A common concern on Delphi is seeing a market with low activity and thinking "this market is dead, I will not get my money back."
           </p>
-
           <p>
-            Delphi chose DPM because it fits the needs of a young decentralized
-            prediction market platform. It works well for small markets. It helps
-            users trade. It keeps risk controlled for market creators. And it
-            gives Delphi a strong base to build on.
+            That is the wrong way to think about it here. Delphi is not an order book like Polymarket where low liquidity means you cannot find a buyer. DPM does not work like that.
           </p>
-
           <p>
-            In short, DPM is a practical starting point. It is not magic. It is a
-            careful choice for the kind of markets Delphi wants to support.
+            In DPM, the cost function handles every trade automatically. You do not need someone on the other side to match your bet. The market will always take your trade. Your position size and payout percentage are determined by your entry price and shares — not by how many other people showed up.
+          </p>
+          <p>
+            A quiet market on Delphi is not a broken market. It is just a market with fewer participants. Your position is still valid.
           </p>
         </section>
+
+        <section>
+          <h2>The One Real Tradeoff</h2>
+          <p>
+            DPM is not perfect. The main thing to know is that the price in a DPM market is not the same as the probability of an outcome.
+          </p>
+          <p>
+            On some platforms, if something is priced at 70 cents, that means the crowd thinks there is a 70% chance it happens. On Delphi, it is slightly more complex than that. The implied probability needs a bit of extra calculation under the hood.
+          </p>
+          <p>
+            For most users this will not matter day to day. But it is worth knowing so you are not surprised.
+          </p>
+        </section>
+
+        <section>
+          <h2>Quick Summary</h2>
+          <p>
+            Delphi uses DPM because it works well for a new platform with thin markets. It lets anyone trade at any time. It keeps risk manageable for market creators. And it is built on solid academic foundations — not hype.
+          </p>
+          <p>
+            The tradeoffs are real and the team is open about them. No mechanism is perfect. But for what Delphi is trying to build, DPM is a thoughtful starting point.
+          </p>
+          <p>
+            If you ever have questions about a specific market or payout, feel free to ask in the community. Chances are someone has seen a similar situation before.
+          </p>
+        </section>
+
       </article>
     </main>
+
+    <script>
+      // ── DARK / LIGHT TOGGLE ──
+      const toggle = document.getElementById('themeToggle');
+      const label  = document.getElementById('toggleLabel');
+      const html   = document.documentElement;
+
+      const saved = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-theme', saved);
+      label.textContent = saved === 'dark' ? 'Dark' : 'Light';
+
+      toggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next    = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        label.textContent = next === 'dark' ? 'Dark' : 'Light';
+        localStorage.setItem('theme', next);
+      });
+
+      // ── SCROLL REVEAL ──
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = '0.05s';
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      sections.forEach(sec => observer.observe(sec));
+
+      // ── NUMBER COUNTER ANIMATION ──
+      function animateCounter(el) {
+        const target   = parseFloat(el.dataset.target);
+        const prefix   = el.dataset.prefix   || '';
+        const suffix   = el.dataset.suffix   || '';
+        const decimals = parseInt(el.dataset.decimals) || 0;
+        const duration = 1200;
+        const start    = performance.now();
+
+        function step(now) {
+          const elapsed  = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // ease out cubic
+          const eased    = 1 - Math.pow(1 - progress, 3);
+          const current  = eased * target;
+          el.textContent = prefix + current.toFixed(decimals) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('.count-num').forEach(el => counterObserver.observe(el));
+    </script>
   </body>
 </html>
