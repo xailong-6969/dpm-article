@@ -154,7 +154,7 @@ h1 {
   font-family: 'DM Serif Display', serif;
   font-size: 4rem;
   line-height: 1.05;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: var(--ink);
   transition: color 0.35s;
 }
@@ -177,7 +177,7 @@ h1 {
   margin: 30px 0 38px;
   padding: 18px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--panel);
   opacity: 0;
   transform: translateY(20px);
@@ -226,6 +226,48 @@ h1 {
   border-right: 2px solid var(--warm);
   transform: translateY(-50%) rotate(45deg);
   transition: border-color 0.35s;
+}
+
+.guide-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0 0 34px;
+}
+
+.guide-point {
+  min-height: 132px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.35s, border-color 0.35s;
+}
+
+.guide-label {
+  width: fit-content;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--accent-dark);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.guide-point strong {
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
+.guide-point span:last-child {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
 }
 
 /* ── SECTIONS ── */
@@ -309,6 +351,14 @@ strong {
     bottom: -1px;
     transform: translateX(50%) rotate(135deg);
   }
+
+  .guide-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-point {
+    min-height: auto;
+  }
 }
 
 /* ── INFOGRAPHICS ── */
@@ -316,7 +366,7 @@ strong {
   margin: 28px 0 24px;
   padding: 24px 20px 20px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 8px;
   background: var(--panel);
   opacity: 0;
   transform: translateY(24px);
@@ -432,7 +482,7 @@ strong {
 .entry-card {
   flex: 1; min-width: 200px; max-width: 280px;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 16px;
   display: flex; flex-direction: column; gap: 8px;
   background: var(--soft);
@@ -480,7 +530,7 @@ strong {
 }
 .liq-card {
   flex: 1; min-width: 200px; max-width: 280px;
-  border: 1px solid var(--line); border-radius: 10px;
+  border: 1px solid var(--line); border-radius: 8px;
   padding: 16px; background: var(--soft);
   display: flex; flex-direction: column; gap: 10px;
   transition: background 0.35s, border-color 0.35s;
@@ -551,7 +601,7 @@ strong {
 .wr-compare { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .wr-card {
   flex: 1; min-width: 190px; max-width: 260px;
-  border-radius: 10px; padding: 18px;
+  border-radius: 8px; padding: 18px;
   display: flex; flex-direction: column; gap: 8px;
   border: 2px solid transparent;
   text-align: center;
@@ -574,7 +624,7 @@ strong {
 .con-compare { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .con-card {
   flex: 1; min-width: 200px; max-width: 300px;
-  border: 1px solid var(--line); border-radius: 10px;
+  border: 1px solid var(--line); border-radius: 8px;
   padding: 16px; background: var(--soft);
   display: flex; flex-direction: column; gap: 12px;
   transition: background 0.35s, border-color 0.35s;
