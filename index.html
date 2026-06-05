@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>How DPM Works on Delphi</title>
     <meta name="description" content="A practical user guide to how Dynamic Parimutuel Markets work on Delphi, with simple examples.">
-    <link rel="stylesheet" href="style.css?v=20260605-layout2">
+    <link rel="stylesheet" href="style.css?v=20260605-context1">
   </head>
   <body>
 
@@ -70,6 +70,19 @@
           <p>
             That is why two users can spend the same amount and still end up with different payouts. Entry price, share count, and pool size all matter.
           </p>
+        </section>
+
+        <section>
+          <h2>Quick DPM Read</h2>
+          <p>
+            Think of a Delphi market like a shared prize pool. People buy shares on either side, usually Yes or No.
+          </p>
+          <ul class="quick-list">
+            <li><strong>Enter early:</strong> shares are usually cheaper, so the same money can buy more shares.</li>
+            <li><strong>More people buy one side:</strong> that side gets more expensive, so later buyers receive fewer shares.</li>
+            <li><strong>Your payout can change:</strong> it depends on your shares, the final pool size, and how many other winners split that pool.</li>
+            <li><strong>More people on your side:</strong> good for confidence, but it can also mean more winners sharing the same pot.</li>
+          </ul>
         </section>
 
         <section>
@@ -266,10 +279,10 @@
             A user entered early when the potential payout showed around <strong><span class="count-num" data-target="8" data-prefix="$" data-decimals="2">$8.00</span></strong>. But over time, more and more people joined the same side.
           </p>
           <p>
-            The pool grew. But so did the number of people splitting it. By settlement, the claimable amount dropped to <strong><span class="count-num" data-target="3.75" data-prefix="$" data-decimals="2">$3.75</span></strong>.
+            The pool grew, but the number of winners grew too. Their share of the winning pool became smaller, so the final claim dropped to <strong><span class="count-num" data-target="3.75" data-prefix="$" data-decimals="2">$3.75</span></strong>.
           </p>
           <p>
-            Not a bug. Not an error. When everyone agrees with you, you still win — but you share the pot with a lot more people.
+            That is not a bug. When many people are right with you, the winning side has to split the pot between more people.
           </p>
         </section>
 

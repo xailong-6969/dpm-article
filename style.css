@@ -300,6 +300,26 @@ p {
   transition: color 0.35s;
 }
 
+.quick-list {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.quick-list li {
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent);
+  background: var(--soft);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.quick-list strong {
+  color: var(--accent-dark);
+}
+
 strong {
   color: var(--accent-dark);
   transition: color 0.35s;
