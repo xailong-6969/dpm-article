@@ -50,9 +50,9 @@
             Every market on Delphi is a shared prize pool. People put money in by buying shares on an outcome. When the market settles, the entire pool gets distributed among the winners — based on how many shares each person holds.
           </p>
           <p>The key formula is straightforward:</p>
-          <p><strong>Payout = Your Shares × Settlement Price</strong></p>
+          <p><strong>Payout = Your Shares &times; Final Payout Per Share</strong></p>
           <p>
-            Your shares are determined by when you entered and at what price. The settlement price is determined by how the pool resolves. These two numbers multiplied together give you your final payout.
+            Your shares are determined by when you entered and at what price. The final payout per share is known when the market settles. These two numbers multiplied together give you your final payout.
           </p>
 
           <!-- INFOGRAPHIC 1: How pool splits among winners -->
@@ -182,9 +182,9 @@
         </section>
 
         <section>
-          <h2>Example 1: IPL Final</h2>
+          <h2>Example 1: Cricket Final</h2>
           <p>
-            A market opens: <em>"Who will win IPL 2025 — MI or CSK?"</em>
+            A market opens: <em>"Who will win the final - MI or CSK?"</em>
           </p>
           <p>
             At the start, both sides are quiet. You believe MI will win and put in <strong>$10 early</strong> when the price is low — say 30 cents per share. You receive roughly <strong><span class="count-num" data-target="33" data-decimals="0">33</span> shares</strong>.
@@ -198,18 +198,18 @@
         </section>
 
         <section>
-          <h2>Example 2: Bitcoin Above $100k</h2>
+          <h2>Example 2: Bitcoin Price Target</h2>
           <p>
-            A market asks: <em>"Will BTC hit $100k before end of 2025?"</em>
+            A market asks: <em>"Will BTC close above the target price before the deadline?"</em>
           </p>
           <p>
             Early on, very few people believe it. YES shares are cheap at 20 cents. You buy <strong>$20 worth</strong> and receive <strong><span class="count-num" data-target="100" data-decimals="0">100</span> shares</strong>.
           </p>
           <p>
-            Three months later, BTC pumps hard. Everyone starts buying YES. Price jumps to 75 cents. A new buyer puts in $20 and gets only <strong><span class="count-num" data-target="26" data-decimals="0">26</span> shares</strong>.
+            Later, BTC moves sharply upward. Everyone starts buying YES. Price jumps to 75 cents. A new buyer puts in $20 and gets only <strong><span class="count-num" data-target="26" data-decimals="0">26</span> shares</strong>.
           </p>
           <p>
-            BTC hits $100k. Market resolves YES. Your 100 shares versus their 26 — you walk away with nearly <strong>4× their payout</strong> despite investing the same $20.
+            BTC closes above the target. Market resolves YES. Your 100 shares versus their 26 — you walk away with nearly <strong>4× their payout</strong> despite investing the same $20.
           </p>
         </section>
 
@@ -259,40 +259,40 @@
 
           <!-- INFOGRAPHIC 4: Liquidity small vs big pool -->
           <div class="infographic" id="infographic-liquidity">
-            <div class="infographic-title">Small Pool vs Big Pool — Your Position Stays Proportional</div>
+            <div class="infographic-title">Small Pool vs Big Pool — Same Trade, Different Impact</div>
             <div class="liquidity-compare">
               <div class="liq-card">
                 <div class="liq-header">Small Pool</div>
                 <div class="liq-pool-vis small-pool">
-                  <div class="liq-your-slice" style="width:20%">Your 20%</div>
+                  <div class="liq-your-slice" style="width:42%">High impact</div>
                 </div>
                 <div class="liq-stats">
-                  <div class="liq-stat">Total pool: <strong>$50</strong></div>
-                  <div class="liq-stat">Your bet: <strong>$10</strong></div>
-                  <div class="liq-stat">Your share: <strong>20%</strong></div>
-                  <div class="liq-stat liq-payout">Your payout: <strong>$10</strong> from winning side</div>
+                  <div class="liq-stat">Pool before trade: <strong>$50</strong></div>
+                  <div class="liq-stat">Your trade: <strong>$10</strong></div>
+                  <div class="liq-stat">Effect: <strong>large</strong></div>
+                  <div class="liq-stat liq-payout">Price and payout estimates can move a lot.</div>
                 </div>
               </div>
               <div class="liq-vs">≈</div>
               <div class="liq-card">
                 <div class="liq-header">Big Pool</div>
                 <div class="liq-pool-vis big-pool">
-                  <div class="liq-your-slice" style="width:0.2%"></div>
-                  <div class="liq-your-label">Your 0.2%</div>
+                  <div class="liq-your-slice" style="width:4%"></div>
+                  <div class="liq-your-label">Low impact</div>
                 </div>
                 <div class="liq-stats">
-                  <div class="liq-stat">Total pool: <strong>$5,000</strong></div>
-                  <div class="liq-stat">Your bet: <strong>$10</strong></div>
-                  <div class="liq-stat">Your share: <strong>0.2%</strong></div>
-                  <div class="liq-stat liq-payout">Your payout: <strong>$10</strong> from winning side</div>
+                  <div class="liq-stat">Pool before trade: <strong>$5,000</strong></div>
+                  <div class="liq-stat">Your trade: <strong>$10</strong></div>
+                  <div class="liq-stat">Effect: <strong>small</strong></div>
+                  <div class="liq-stat liq-payout">Price and payout estimates move less.</div>
                 </div>
               </div>
             </div>
-            <div class="pool-note">A quiet market is not a broken market. Your position scales with your share of the pool regardless of total size.</div>
+            <div class="pool-note">A quiet market is still usable, but a small trade can move a small pool more than it would move a large pool.</div>
           </div>
 
           <p>
-            A quiet market on Delphi is not a broken market. It is just a smaller pool. Your position is still valid and your payout scales with your share of it.
+            A quiet market on Delphi is not a broken market. It is just a smaller pool. You can still trade, but prices and payout estimates may move more because each trade is a bigger part of the pool.
           </p>
         </section>
 
@@ -341,7 +341,7 @@
                 <div class="tl-num">5</div>
                 <div class="tl-content">
                   <div class="tl-title">Settlement</div>
-                  <div class="tl-desc">Winning outcome is confirmed. The pool is distributed among winners based on shares held. Wrong outcome = $0. Correct outcome = Your Shares × Settlement Price.</div>
+                  <div class="tl-desc">Winning outcome is confirmed. The pool is distributed among winners based on shares held. Wrong outcome = $0. Correct outcome = Your Shares &times; Final Payout Per Share.</div>
                 </div>
               </div>
             </div>
@@ -369,11 +369,11 @@
                 <div class="wr-icon">✓</div>
                 <div class="wr-label">Correct Outcome</div>
                 <div class="wr-desc">You held shares on the winning side</div>
-                <div class="wr-result">Payout = <strong>Shares × Settlement Price</strong></div>
+                <div class="wr-result">Payout = <strong>Shares &times; Final Payout Per Share</strong></div>
                 <div class="wr-note">Your share of the total pool based on how many shares you hold</div>
               </div>
             </div>
-            <div class="pool-note">This is not unique to DPM — any prediction market works this way. The difference in DPM is how your shares and payout are calculated.</div>
+            <div class="pool-note">Most binary prediction markets settle losing shares at $0. In DPM, the special part is how shares, prices, and final payout are calculated.</div>
           </div>
 
           <p>
@@ -437,7 +437,7 @@
         <section>
           <h2>One Thing to Keep in Mind</h2>
           <p>
-            DPM prices and probabilities are not the same number. On some platforms, a price of 70 cents directly means a 70% chance. In DPM, the implied probability requires a small extra calculation under the hood.
+            DPM prices and probabilities are not the same number. On some fixed-payout prediction markets, a price of 70 cents is often read as about a 70% chance. In DPM, you should not read the price that directly. The implied probability requires an extra calculation under the hood.
           </p>
           <p>
             For most day-to-day usage this will not affect you. But it is worth knowing so you are not caught off guard when comparing prices across platforms.
