@@ -61,13 +61,13 @@ body {
 
 /* ── LAYOUT ── */
 .page {
-  width: min(100%, 960px);
+  width: min(100%, 1280px);
   margin: 0 auto;
-  padding: 40px 20px 64px;
+  padding: 44px 28px 72px;
 }
 
 .article {
-  max-width: 760px;
+  max-width: 1160px;
   margin: 0 auto;
 }
 
@@ -283,6 +283,35 @@ section.visible {
   animation: fadeUp 0.6s ease forwards;
 }
 
+@media (min-width: 1080px) {
+  .article > section {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 52px;
+    align-items: start;
+  }
+
+  .article > section:first-of-type {
+    display: block;
+    max-width: 900px;
+  }
+
+  .article > section > h2 {
+    grid-column: 1;
+    margin-top: 8px;
+    padding-right: 18px;
+  }
+
+  .article > section > p,
+  .article > section > .infographic {
+    grid-column: 2;
+  }
+
+  .article > section > p {
+    max-width: 860px;
+  }
+}
+
 h2 {
   margin: 32px 0 12px;
   color: var(--accent-dark);
@@ -480,7 +509,7 @@ strong {
   flex-wrap: wrap; justify-content: center;
 }
 .entry-card {
-  flex: 1; min-width: 200px; max-width: 280px;
+  flex: 1; min-width: 220px; max-width: 360px;
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 16px;
@@ -529,7 +558,7 @@ strong {
   flex-wrap: wrap; justify-content: center;
 }
 .liq-card {
-  flex: 1; min-width: 200px; max-width: 280px;
+  flex: 1; min-width: 240px; max-width: 380px;
   border: 1px solid var(--line); border-radius: 8px;
   padding: 16px; background: var(--soft);
   display: flex; flex-direction: column; gap: 10px;
@@ -600,7 +629,7 @@ strong {
 /* ── WRONG vs RIGHT ── */
 .wr-compare { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .wr-card {
-  flex: 1; min-width: 190px; max-width: 260px;
+  flex: 1; min-width: 220px; max-width: 360px;
   border-radius: 8px; padding: 18px;
   display: flex; flex-direction: column; gap: 8px;
   border: 2px solid transparent;
@@ -623,7 +652,7 @@ strong {
 /* ── CONTRARIAN vs CONSENSUS ── */
 .con-compare { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .con-card {
-  flex: 1; min-width: 200px; max-width: 300px;
+  flex: 1; min-width: 240px; max-width: 400px;
   border: 1px solid var(--line); border-radius: 8px;
   padding: 16px; background: var(--soft);
   display: flex; flex-direction: column; gap: 12px;
