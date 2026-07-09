@@ -1162,6 +1162,47 @@ em {
   }
 
   .side-rail {
+    position: sticky;
+    top: 62px;
+    z-index: 105;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 52px 0 22px;
+    padding: 10px;
+    overflow-x: auto;
+    border-left: 0;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .side-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .side-rail a {
+    flex: 0 0 auto;
+    padding: 8px 11px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .side-rail a:hover {
+    transform: none;
+    border-color: var(--glass-edge-soft);
+  }
+
+  .rail-label {
+    flex: 0 0 auto;
+    margin: 0 2px 0 0;
+    padding: 8px 11px;
+  }
+
+  .side-rail::before {
     display: none;
   }
 }
@@ -1174,7 +1215,14 @@ em {
   }
 
   .page {
-    padding: 22px 16px 58px;
+    padding: 18px 16px 58px;
+  }
+
+  .side-rail {
+    top: 58px;
+    margin-bottom: 16px;
+    padding: 8px;
+    font-size: 0.9rem;
   }
 
   .theme-toggle {
