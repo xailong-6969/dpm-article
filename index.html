@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>How DPM Works on Delphi</title>
     <meta name="description" content="A practical user guide to how Dynamic Parimutuel Markets work on Delphi, with simple examples.">
-    <link rel="stylesheet" href="style.css?v=20260605-context1">
+    <meta name="theme-color" content="#f4efe4">
+    <link rel="stylesheet" href="style.css?v=20260709-redesign1">
   </head>
   <body>
+    <div class="read-progress" id="readProgress" aria-hidden="true"></div>
 
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <div class="toggle-track">
@@ -17,6 +19,17 @@
     </button>
 
     <main class="page">
+      <nav class="side-rail" aria-label="Article sections">
+        <span class="rail-label">Guide</span>
+        <a href="#before-trade">Before</a>
+        <a href="#core-pool">Pool</a>
+        <a href="#price-moves">Price</a>
+        <a href="#liquidity">Liquidity</a>
+        <a href="#settlement">Settlement</a>
+        <a href="#faq">FAQ</a>
+        <a href="#remember">Remember</a>
+      </nav>
+
       <article class="article">
 
         <header class="hero">
@@ -25,6 +38,11 @@
           <p class="dek">
             Why your payout preview changes, why share count matters, and why the same trade can feel different in a small market.
           </p>
+          <div class="hero-meta" aria-label="Article focus">
+            <span>Pool-based pricing</span>
+            <span>Moving payout previews</span>
+            <span>Share-weighted settlement</span>
+          </div>
         </header>
 
         <figure class="market-visual" aria-label="DPM market flow">
@@ -53,7 +71,7 @@
           </div>
         </div>
 
-        <section>
+        <section class="lead-section">
           <p>
             If you have ever placed a position on Delphi and wondered why the payout number changed, this will make it easier to read.
           </p>
@@ -62,7 +80,7 @@
           </p>
         </section>
 
-        <section>
+        <section id="before-trade">
           <h2>Before You Trade</h2>
           <p>
             The main thing to know is that Delphi does not use fixed odds. You buy shares from a pool, and the pool keeps updating as more users trade.
@@ -72,7 +90,7 @@
           </p>
         </section>
 
-        <section>
+        <section id="quick-read">
           <h2>Quick DPM Read</h2>
           <p>
             Think of a Delphi market like a shared prize pool. People buy shares on either side, usually Yes or No.
@@ -85,13 +103,13 @@
           </ul>
         </section>
 
-        <section>
+        <section id="core-pool">
           <h2>The Core Idea: One Shared Pool</h2>
           <p>
             Every market on Delphi is a shared prize pool. People put money in by buying shares on an outcome. When the market settles, the entire pool gets distributed among the winners — based on how many shares each person holds.
           </p>
           <p>The payout comes from this idea:</p>
-          <p><strong>Payout = Your Shares &times; Final Payout Per Share</strong></p>
+          <p class="formula"><strong>Payout = Your Shares &times; Final Payout Per Share</strong></p>
           <p>
             Your shares are determined by when you entered and at what price. The final payout per share is known when the market settles. These two numbers multiplied together give you your final payout.
           </p>
@@ -134,13 +152,13 @@
           </div>
         </section>
 
-        <section>
+        <section id="price-moves">
           <h2>How the Price Moves</h2>
           <p>
             In DPM, the price is not set by anyone. It moves automatically based on demand. Every time someone buys shares on an outcome, the price for that outcome goes up. The more people pile in, the more expensive it gets for the next buyer.
           </p>
           <p>
-            This is by design. Early buyers get rewarded with cheaper prices — and therefore more shares — for committing to an outcome before the crowd catches on.
+            This is by design. Early buyers can get a better entry if they are right, because lower prices can mean more shares before a side gets crowded.
           </p>
 
           <!-- INFOGRAPHIC 2: DPM Price Movement Flow -->
@@ -171,17 +189,17 @@
                 <div class="price-shares">Late buyer gets <strong>11 shares</strong> for $10</div>
               </div>
             </div>
-            <div class="price-note">Same $10, different timing. The early buyer gets many more shares because the price was lower.</div>
+            <div class="price-note">Same $10, different timing. An earlier entry can buy more shares when the price is lower, but the final payout still depends on how crowded the winning side becomes.</div>
           </div>
 
           <p>
-            Early buyer → lower price → more shares → bigger slice of the final pool<br>
+            Early entry can help → lower price can mean more shares if you are right<br>
             Late buyer → higher price → fewer shares → smaller slice of the final pool
           </p>
         </section>
 
         <!-- INFOGRAPHIC 3: Early vs Late Entry -->
-        <section>
+        <section id="early-entry">
           <h2>Early vs Late Entry</h2>
           <p>
             Your payout depends on more than how much you put in. It also depends on the number of shares you received when you entered.
@@ -222,7 +240,7 @@
           </div>
         </section>
 
-        <section>
+        <section id="cricket-final">
           <h2>Example 1: Cricket Final</h2>
           <p>
             A market opens: <em>"Who will win the final - MI or CSK?"</em>
@@ -238,7 +256,7 @@
           </p>
         </section>
 
-        <section>
+        <section id="btc-target">
           <h2>Example 2: Bitcoin Price Target</h2>
           <p>
             A market asks: <em>"Will BTC close above the target price before the deadline?"</em>
@@ -254,7 +272,7 @@
           </p>
         </section>
 
-        <section>
+        <section id="esports">
           <h2>Example 3: Esports Tournament</h2>
           <p>
             Market: <em>"Will Team Liquid win the next major CS2 tournament?"</em>
@@ -270,7 +288,7 @@
           </p>
         </section>
 
-        <section>
+        <section id="gta-trailer">
           <h2>Example 4: GTA VI Trailer</h2>
           <p>
             A real one. Market: <em>"Will GTA Trailer 3 release before or after May 27th?"</em>
@@ -286,7 +304,7 @@
           </p>
         </section>
 
-        <section>
+        <section id="liquidity">
           <h2>How Liquidity Works in DPM</h2>
           <p>
             This is the part most people get wrong — especially those coming from platforms like Polymarket.
@@ -295,7 +313,7 @@
             On an order book platform, low liquidity means you might not find a buyer or seller on the other side. That is a real concern there. <strong>DPM does not work like that.</strong>
           </p>
           <p>
-            Think of it like a DEX liquidity pool. You do not need a matching buyer — the pool always accepts your trade and the price adjusts automatically. DPM is the same idea applied to prediction markets.
+            Think of it like a DEX liquidity pool. You do not need a matching buyer in the same order-book sense, but trades are still subject to liquidity, slippage, and market status. DPM is the same idea applied to prediction markets.
           </p>
 
           <!-- INFOGRAPHIC 4: Liquidity small vs big pool -->
@@ -333,12 +351,12 @@
           </div>
 
           <p>
-            A quiet market on Delphi is not a broken market. It is just a smaller pool. You can still trade, but prices and payout estimates may move more because each trade is a bigger part of the pool.
+            A quiet market on Delphi is not automatically broken. It is usually just a smaller pool. If the market is live and available, prices and payout estimates may move more because each trade is a bigger part of the pool.
           </p>
         </section>
 
         <!-- STEP BY STEP TIMELINE -->
-        <section>
+        <section id="settlement">
           <h2>From Entry to Settlement: Step by Step</h2>
           <p>
             This is the path from entering a market to getting paid.
@@ -390,7 +408,7 @@
         </section>
 
         <!-- WHAT HAPPENS IF I AM WRONG -->
-        <section>
+        <section id="wrong-outcome">
           <h2>What Happens if You Pick the Wrong Outcome?</h2>
           <p>
             Simple answer — if you hold shares on the losing outcome at settlement, that position is worth <strong>$0</strong>. The entire pool goes to the winners.
@@ -423,7 +441,7 @@
         </section>
 
         <!-- CONTRARIAN vs CONSENSUS -->
-        <section>
+        <section id="contrarian">
           <h2>Contrarian vs Consensus: Who Gets Paid More?</h2>
           <p>
             In DPM, not all correct predictions pay equally. The fewer people who agree with you, the bigger your cut of the pool when you are right.
@@ -467,7 +485,7 @@
                 </div>
               </div>
             </div>
-            <div class="pool-note">This is why a crowded winning side can still pay less than people expect.</div>
+            <div class="pool-note">Early entry can help, but a crowded winning side can still mean lower payout per share.</div>
           </div>
 
           <p>
@@ -475,7 +493,7 @@
           </p>
         </section>
 
-        <section>
+        <section id="probability-note">
           <h2>One Thing to Keep in Mind</h2>
           <p>
             DPM prices and probabilities are not the same number. On some fixed-payout prediction markets, a price of 70 cents is often read as about a 70% chance. In DPM, you should not read the price that directly. The implied probability requires an extra calculation under the hood.
@@ -485,13 +503,110 @@
           </p>
         </section>
 
-        <section>
+        <section id="faq" class="faq-section">
+          <h2>Delphi Payout FAQ: How DPM Works</h2>
+
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Q: What is DPM?</h3>
+              <p>DPM means Dynamic Parimutuel Market.</p>
+              <p>In simple words, Delphi markets use a pool-based payout system. Traders buy positions on different outcomes, and the money goes into the market pool. When the market settles, the winning side gets paid from that pool.</p>
+              <p>DPM = decides how the pool is shared between winners</p>
+            </article>
+
+            <article class="faq-item">
+              <h3>Q: Is Delphi payout fixed like “1 winning share = $1”?</h3>
+              <p>No. Delphi payout is not fixed like that. In a DPM market, your final payout depends on:</p>
+              <div class="faq-lines" aria-label="Payout factors">
+                <span>The total market pool</span>
+                <span>How many winning shares exist</span>
+                <span>How much liquidity the market has</span>
+                <span>What price you entered at</span>
+                <span>What other traders do before the market closes</span>
+                <span>Fees / market rules</span>
+              </div>
+              <p>So your estimated payout can change while the market is still live.</p>
+            </article>
+
+            <article class="faq-item">
+              <h3>Q: Where does the payout come from?</h3>
+              <p>The payout comes from the market pool. When users buy the provided outcome, that money becomes part of the market’s pool. After settlement, the winning outcome holders share the available pool.</p>
+              <p>Simple version: Losers’ money helps pay winners.</p>
+              <p>That is why it is called parimutuel. Traders are not betting against Delphi as a house. Traders are effectively trading against the rest of the market pool.</p>
+            </article>
+
+            <article class="faq-item">
+              <h3>Q: Simple payout example?</h3>
+              <p>Let’s say there is a market: Will Argentina win the match?</p>
+              <p>Users buy both sides:</p>
+              <div class="faq-lines" aria-label="Market sides">
+                <span>YES buyers put money into YES</span>
+                <span>NO buyers put money into NO</span>
+              </div>
+              <p>Now imagine the total market pool is $1,000. If YES wins, then YES holders share the pool. If there are 500 winning YES shares, then the rough payout is:</p>
+              <p>$1,000 ÷ 500 = $2 per YES share</p>
+              <p>So if you hold 50 YES shares, your payout would be around:</p>
+              <p>50 × $2 = $100</p>
+              <p>This is just a simple example.</p>
+            </article>
+
+            <article class="faq-item">
+              <h3>Q: Why does my estimated payout change?</h3>
+              <p>Because the market is still active. Your payout estimate can change when:</p>
+              <div class="faq-lines" aria-label="Payout estimate changes">
+                <span>More people buy your side</span>
+                <span>More people buy the opposite side</span>
+                <span>Liquidity changes the price impact</span>
+                <span>Someone sells their position</span>
+                <span>The pool grows before market close</span>
+              </div>
+              <p>For example, if many people buy the same winning side, the pool is shared among more winning shares. That can reduce payout per share. But if many people buy the losing side, that can increase the pool available to the winners.</p>
+              <p>So more volume alone does not always mean higher payout for you. It depends where that volume goes.</p>
+            </article>
+
+            <article class="faq-item">
+              <h3>Q: What does price mean in DPM?</h3>
+              <p>The price is like the market’s current implied belief, but it is also affected by liquidity and trading activity.</p>
+              <p>If YES is showing around 70%, it means the market is pricing YES as the stronger side at that moment. But traders should understand this clearly:</p>
+              <p>Price is not a guarantee.</p>
+              <p>It is just the current market price based on trading activity.</p>
+              <p>In low-liquidity markets, price can move sharply even from small trades, so it may not always reflect true crowd confidence.</p>
+            </article>
+
+            <article class="faq-item">
+              <h3>Q: Is high volume always good for payout?</h3>
+              <p>Not always.</p>
+              <p>Volume only means trading activity. It does not automatically mean your payout will be higher.</p>
+              <p>Example:</p>
+              <p>If you bought YES and most later volume also buys YES, then more winning shares may be created. If YES wins, the pool has to be shared between more YES holders.</p>
+              <p>But if you bought YES and many users buy NO, then if YES wins, there may be more losing-side money in the pool for YES holders.</p>
+              <p>So traders should not only look at volume. They should also look at:</p>
+              <div class="faq-lines" aria-label="Volume context">
+                <span>Which side is receiving volume</span>
+                <span>Current price</span>
+                <span>Liquidity</span>
+                <span>Estimated payout</span>
+                <span>Entry timing</span>
+                <span>Market rules</span>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <h3>Q: Does low liquidity affect payout?</h3>
+              <p>Yes, indirectly.</p>
+              <p>Low liquidity does not mean the market cannot pay winners. The DPM design is pool-based, so payouts come from the pool.</p>
+              <p>low liquidity mainly affects price quality, slippage, trade impact, and whether the market is currently available for trading.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="remember">
           <h2>What To Remember</h2>
           <p>
-            DPM is a shared pool system. Prices move automatically based on demand. Early buyers get more shares for less money. Winners split the pool based on shares held — not fixed odds.
+            DPM is a shared pool system. Prices move automatically based on demand. Early entry can help if it gives you more shares at a better price, but winners still split the pool based on shares held — not fixed odds.
           </p>
           <p>
-            Low liquidity does not mean your position is broken — it just means a smaller pool. And the best payouts go to people who were right when most others were wrong.
+            Low liquidity does not mean your position is broken — it usually means a smaller pool with more price impact. Strong payouts often come from being right when most others were wrong.
           </p>
           <p>
             For Delphi users, the main idea is simple: your outcome matters, but your entry price and share count matter too.
@@ -509,6 +624,7 @@
       const toggle = document.getElementById('themeToggle');
       const label  = document.getElementById('toggleLabel');
       const html   = document.documentElement;
+      const progress = document.getElementById('readProgress');
       const saved  = localStorage.getItem('theme') || 'light';
       html.setAttribute('data-theme', saved);
       label.textContent = saved === 'dark' ? 'Dark' : 'Light';
@@ -519,6 +635,15 @@
         label.textContent = next === 'dark' ? 'Dark' : 'Light';
         localStorage.setItem('theme', next);
       });
+
+      function updateReadProgress() {
+        if (!progress) return;
+        const scrollable = html.scrollHeight - html.clientHeight;
+        const percent = scrollable <= 0 ? 0 : (html.scrollTop / scrollable) * 100;
+        progress.style.width = percent + '%';
+      }
+      window.addEventListener('scroll', updateReadProgress, { passive: true });
+      updateReadProgress();
 
       // SCROLL REVEAL
       const revealEls = document.querySelectorAll('section, .infographic');
