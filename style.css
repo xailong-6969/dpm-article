@@ -1334,6 +1334,351 @@ em {
   }
 }
 
+/* Glass interface layer */
+:root {
+  --glass-top: rgba(255, 255, 255, 0.58);
+  --glass-mid: rgba(255, 255, 255, 0.26);
+  --glass-low: rgba(255, 255, 255, 0.12);
+  --glass-edge: rgba(255, 255, 255, 0.72);
+  --glass-edge-soft: rgba(255, 255, 255, 0.28);
+  --glass-shadow: 0 24px 80px rgba(49, 69, 88, 0.18);
+  --glass-shadow-hover: 0 34px 110px rgba(49, 69, 88, 0.24);
+  --glass-flare: rgba(255, 255, 255, 0.72);
+  --glass-tint: rgba(105, 205, 220, 0.18);
+  --glass-blur: 28px;
+  --cursor-x: 50%;
+  --cursor-y: 18%;
+  --scene-y: 0px;
+  --mx: 50%;
+  --my: 0%;
+  --rx: 0deg;
+  --ry: 0deg;
+  --press: 1;
+}
+
+[data-theme="dark"] {
+  --glass-top: rgba(255, 255, 255, 0.14);
+  --glass-mid: rgba(255, 255, 255, 0.075);
+  --glass-low: rgba(255, 255, 255, 0.035);
+  --glass-edge: rgba(255, 255, 255, 0.26);
+  --glass-edge-soft: rgba(255, 255, 255, 0.11);
+  --glass-shadow: 0 28px 92px rgba(0, 0, 0, 0.42);
+  --glass-shadow-hover: 0 38px 120px rgba(0, 0, 0, 0.54);
+  --glass-flare: rgba(255, 255, 255, 0.22);
+  --glass-tint: rgba(95, 208, 190, 0.13);
+}
+
+body {
+  background:
+    linear-gradient(120deg, rgba(232, 246, 255, 0.95) 0%, rgba(239, 247, 250, 0.82) 28%, rgba(232, 240, 255, 0.9) 58%, rgba(240, 245, 238, 0.96) 100%),
+    var(--paper);
+}
+
+[data-theme="dark"] body {
+  background:
+    linear-gradient(120deg, #070b0d 0%, #0b1315 34%, #10151d 68%, #07100f 100%);
+}
+
+body::before {
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(180deg, #000 0, transparent 920px);
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.14;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(255, 255, 255, 0.34), transparent 0 18rem),
+    linear-gradient(100deg, rgba(95, 208, 190, 0.12), transparent 42%),
+    linear-gradient(280deg, rgba(216, 173, 101, 0.12), transparent 48%);
+  transition: background 0.22s ease;
+}
+
+[data-theme="dark"] body::after {
+  background:
+    radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(95, 208, 190, 0.18), transparent 0 20rem),
+    linear-gradient(100deg, rgba(95, 208, 190, 0.12), transparent 42%),
+    linear-gradient(280deg, rgba(216, 173, 101, 0.09), transparent 48%);
+}
+
+.ambient-glass {
+  position: fixed;
+  inset: -10vh -8vw;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translate3d(0, var(--scene-y), 0);
+  transition: transform 0.18s linear;
+}
+
+.glass-sheet {
+  position: absolute;
+  border: 1px solid var(--glass-edge-soft);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.045)),
+    linear-gradient(45deg, rgba(95, 208, 190, 0.12), rgba(216, 173, 101, 0.08));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42), 0 40px 140px rgba(44, 59, 72, 0.12);
+  backdrop-filter: blur(14px) saturate(1.45);
+  -webkit-backdrop-filter: blur(14px) saturate(1.45);
+}
+
+.sheet-a {
+  width: 48vw;
+  height: 34vh;
+  top: 6vh;
+  right: 4vw;
+  transform: rotate(-12deg) skewX(-8deg);
+}
+
+.sheet-b {
+  width: 44vw;
+  height: 42vh;
+  left: -12vw;
+  top: 32vh;
+  transform: rotate(16deg) skewY(6deg);
+}
+
+.sheet-c {
+  width: 42vw;
+  height: 30vh;
+  right: 14vw;
+  bottom: -4vh;
+  transform: rotate(9deg) skewX(10deg);
+}
+
+.hero,
+.side-rail,
+.theme-toggle,
+.market-visual,
+.guide-point,
+.quick-list li,
+.formula,
+.faq-item,
+.faq-lines,
+.infographic,
+.entry-card,
+.liq-card,
+.wr-card,
+.con-card,
+.timeline,
+.visual-node,
+.price-step,
+.pool-circle,
+.price-badge,
+.liq-pool-vis,
+.con-bar-track,
+.wr-result {
+  border-color: var(--glass-edge-soft);
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 0%), var(--glass-flare), transparent 0 34%),
+    linear-gradient(145deg, var(--glass-top), var(--glass-mid) 42%, var(--glass-low));
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.62);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.62);
+}
+
+.hero {
+  padding: 78px 44px 46px;
+  border: 1px solid var(--glass-edge-soft);
+  border-radius: 36px;
+  overflow: hidden;
+}
+
+.hero::after,
+.market-visual::after,
+.infographic::after,
+.faq-item::after,
+.guide-point::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.36), transparent 26% 68%, rgba(255, 255, 255, 0.12)),
+    radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.36), transparent 0 28%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .hero::after,
+[data-theme="dark"] .market-visual::after,
+[data-theme="dark"] .infographic::after,
+[data-theme="dark"] .faq-item::after,
+[data-theme="dark"] .guide-point::after {
+  opacity: 0.42;
+}
+
+.kicker,
+.hero-meta span,
+.guide-label,
+.entry-tag,
+.liq-header,
+.con-header,
+.rail-label {
+  color: var(--accent-strong);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08));
+  border-color: var(--glass-edge-soft);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(18px) saturate(1.5);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+}
+
+.read-progress {
+  height: 4px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), var(--accent), var(--gold));
+  box-shadow: 0 0 24px rgba(95, 208, 190, 0.36);
+}
+
+.visual-node-strong,
+.con-bar-fill,
+.liq-your-slice,
+.winner-bar {
+  color: #06110f;
+  background:
+    linear-gradient(145deg, rgba(196, 255, 246, 0.92), rgba(95, 208, 190, 0.62)),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.44), transparent);
+  border-color: rgba(255, 255, 255, 0.52);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -12px 28px rgba(17, 107, 96, 0.18),
+    0 18px 46px rgba(95, 208, 190, 0.24);
+}
+
+.winner-b .winner-bar,
+.con-bar-lose {
+  background:
+    linear-gradient(145deg, rgba(255, 234, 191, 0.9), rgba(216, 173, 101, 0.58)),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.38), transparent);
+}
+
+.winner-c .winner-bar {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.12));
+}
+
+.side-rail {
+  border-radius: 28px;
+  border: 1px solid var(--glass-edge-soft);
+  padding: 20px 18px;
+}
+
+.side-rail::before {
+  display: none;
+}
+
+.theme-toggle {
+  border-radius: 999px;
+}
+
+.market-visual,
+.infographic,
+.timeline {
+  border-radius: 30px;
+}
+
+.guide-point,
+.quick-list li,
+.faq-item,
+.faq-lines,
+.entry-card,
+.liq-card,
+.wr-card,
+.con-card,
+.visual-node,
+.price-step,
+.price-badge,
+.formula {
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.visual-node,
+.price-step,
+.price-badge {
+  border-radius: 18px;
+}
+
+.pool-circle {
+  border-radius: 50%;
+}
+
+.glass-physics {
+  transform:
+    perspective(980px)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    translate3d(0, var(--lift, 0px), 0)
+    scale(var(--press, 1));
+  transform-style: preserve-3d;
+  transition:
+    transform 360ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 260ms ease,
+    border-color 260ms ease,
+    background 260ms ease;
+  will-change: transform;
+}
+
+.glass-physics:hover {
+  --lift: -3px;
+  border-color: var(--glass-edge);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
+    var(--glass-shadow-hover);
+}
+
+.glass-physics:active {
+  --press: 0.985;
+}
+
+.article > section:not(.lead-section)::before {
+  color: color-mix(in srgb, var(--ink), transparent 72%);
+}
+
+@media (max-width: 1080px) {
+  .hero {
+    padding: 72px 28px 38px;
+  }
+}
+
+@media (max-width: 760px) {
+  .ambient-glass {
+    inset: -8vh -24vw;
+  }
+
+  .glass-sheet {
+    opacity: 0.62;
+  }
+
+  .hero {
+    padding: 70px 20px 30px;
+    border-radius: 28px;
+  }
+}
+
+@media (hover: none) {
+  .glass-physics {
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1342,5 +1687,13 @@ em {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .ambient-glass {
+    transform: none !important;
+  }
+
+  .glass-physics {
+    transform: none !important;
   }
 }

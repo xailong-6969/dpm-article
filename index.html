@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>How DPM Works on Delphi</title>
     <meta name="description" content="A practical user guide to how Dynamic Parimutuel Markets work on Delphi, with simple examples.">
-    <meta name="theme-color" content="#f4efe4">
-    <link rel="stylesheet" href="style.css?v=20260709-redesign1">
+    <meta name="theme-color" content="#eaf4fb">
+    <link rel="stylesheet" href="style.css?v=20260710-glass1">
   </head>
   <body>
+    <div class="ambient-glass" aria-hidden="true">
+      <div class="glass-sheet sheet-a"></div>
+      <div class="glass-sheet sheet-b"></div>
+      <div class="glass-sheet sheet-c"></div>
+    </div>
     <div class="read-progress" id="readProgress" aria-hidden="true"></div>
 
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -707,6 +712,88 @@
       }, { threshold: 0.3 });
       const entryInfographic = document.getElementById('infographic-entry');
       if (entryInfographic) barObs.observe(entryInfographic);
+
+      // GLASS PHYSICS
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const glassTargets = document.querySelectorAll([
+        '.guide-point',
+        '.quick-list li',
+        '.formula',
+        '.faq-item',
+        '.entry-card',
+        '.liq-card',
+        '.wr-card',
+        '.con-card',
+        '.visual-node',
+        '.price-step',
+        '.tl-step',
+        '.hero-meta span'
+      ].join(','));
+
+      function resetGlass(el) {
+        el.style.setProperty('--rx', '0deg');
+        el.style.setProperty('--ry', '0deg');
+        el.style.setProperty('--press', '1');
+        el.style.setProperty('--mx', '50%');
+        el.style.setProperty('--my', '0%');
+      }
+
+      function addGlassPhysics() {
+        if (prefersReducedMotion.matches) return;
+
+        glassTargets.forEach((el) => {
+          el.classList.add('glass-physics');
+
+          el.addEventListener('pointermove', (event) => {
+            const rect = el.getBoundingClientRect();
+            const x = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
+            const y = Math.min(Math.max((event.clientY - rect.top) / rect.height, 0), 1);
+            const rotateY = (x - 0.5) * 9;
+            const rotateX = (0.5 - y) * 7;
+            el.style.setProperty('--mx', `${(x * 100).toFixed(1)}%`);
+            el.style.setProperty('--my', `${(y * 100).toFixed(1)}%`);
+            el.style.setProperty('--rx', `${rotateX.toFixed(2)}deg`);
+            el.style.setProperty('--ry', `${rotateY.toFixed(2)}deg`);
+          }, { passive: true });
+
+          el.addEventListener('pointerleave', () => resetGlass(el), { passive: true });
+          el.addEventListener('pointerdown', () => el.style.setProperty('--press', '0.985'), { passive: true });
+          el.addEventListener('pointerup', () => el.style.setProperty('--press', '1'), { passive: true });
+        });
+      }
+
+      let glassScrollFrame = 0;
+      function updateGlassScene() {
+        glassScrollFrame = 0;
+        const shift = Math.max(-90, Math.min(0, window.scrollY * -0.028));
+        html.style.setProperty('--scene-y', `${shift.toFixed(1)}px`);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (prefersReducedMotion.matches || glassScrollFrame) return;
+        glassScrollFrame = requestAnimationFrame(updateGlassScene);
+      }, { passive: true });
+
+      window.addEventListener('pointermove', (event) => {
+        if (prefersReducedMotion.matches) return;
+        html.style.setProperty('--cursor-x', `${((event.clientX / window.innerWidth) * 100).toFixed(1)}%`);
+        html.style.setProperty('--cursor-y', `${((event.clientY / window.innerHeight) * 100).toFixed(1)}%`);
+      }, { passive: true });
+
+      const reduceMotionChange = () => {
+        if (prefersReducedMotion.matches) {
+          glassTargets.forEach(resetGlass);
+        }
+      };
+
+      if (typeof prefersReducedMotion.addEventListener === 'function') {
+        prefersReducedMotion.addEventListener('change', reduceMotionChange);
+      } else if (typeof prefersReducedMotion.addListener === 'function') {
+        prefersReducedMotion.addListener(reduceMotionChange);
+      }
+
+      addGlassPhysics();
+      updateGlassScene();
     </script>
   </body>
 </html>
